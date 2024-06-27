@@ -53,3 +53,5 @@ This step computes the netCDF4 files and saves the data there. It also tries to 
 
 `python AEW_postprocessing.py [YEAR OF DATA (required)]`
 
+## Fran's Mod for CP4-Africa Tracking
+The code has been updated in this fork to (a) also select and regrid u and v fields to the necessary 1-degree 6-hourly resolution and (b) exclude the windspharm step since CP4 is a regional simulation.
