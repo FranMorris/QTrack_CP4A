@@ -21,7 +21,7 @@ at quinton.lawton@rsmas.miami.edu.
 #of curvature vorticity averaging we want to pull from.
 import numpy as np
 import sys
-np.warnings.filterwarnings('ignore')
+#np.warnings.filterwarnings('ignore')
 
 #### INFO OF DATA TO RUN ON #####
 
@@ -851,8 +851,8 @@ elif len(sys.argv) == 2: #Only input the data-in
     datafile = sys.argv[1]
     #windfile = 'wind_for_tracking.nc'
 elif len(sys.argv) == 3:
-    data_in = sys.argv[1]
-    data_out = sys.argv[2]
+    datafile = sys.argv[1]
+    windfile = sys.argv[2]
 else:
     raise Exception("Too many arguments provided.")
 

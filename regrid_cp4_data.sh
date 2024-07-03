@@ -19,7 +19,7 @@
 YEAR_STR=1999
 MODEL=R25
 
-for MODEL in CP4 R25 ;do
+for MODEL in CP4 ;do
 
     for STASH in f30201 f30202 ;do
 
@@ -30,7 +30,7 @@ for MODEL in CP4 R25 ;do
         fi
 
         if [ "$MODEL" = CP4 ]; then
-            files=/nfs/a277/IMPALA/data/4km/$STASH/*$YEAR_STR*$YEAR_STR*.nc
+            files=/nfs/a277/IMPALA/data/4km/$STASH/*${YEAR_STR}*${YEAR_STR}*.nc
         elif [ "$MODEL" = R25 ]; then
             files=/nfs/a277/IMPALA/data/25km/$STASH/*$YEAR_STR*$YEAR_STR*.nc
         else

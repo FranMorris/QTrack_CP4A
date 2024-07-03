@@ -62,6 +62,7 @@ def COMPUTE_CURV_VORT_NON_DIV_UPDATE(data_in, data_out, res, radius, njobs, nond
     
     def curv_vort(u, v, dx, dy):
         V_2 = (u**2+v**2)
+        print(np.shape(u))
         curv_vort_raw = (1/V_2)*(u*u*np.gradient(v, axis=1)/dx - v*v*np.gradient(u, axis=0)/dy  
                                  - v*u*np.gradient(u, axis=1)/dx + u*v*np.gradient(v, axis=0)/dy)
     
@@ -216,8 +217,20 @@ def COMPUTE_CURV_VORT_NON_DIV_UPDATE(data_in, data_out, res, radius, njobs, nond
     
     time = nc_file_alt.variables['time'][:]
     time_units = nc_file_alt.variables['time'].units
-    nclat = nc_file['latitude'].values
-    nclon = nc_file['longitude'].values
+    if 'latitude' in nc_file.variables:
+        nclat = nc_file['latitude'].values
+    elif 'lat' in nc_file.variables:
+        nclat = nc_file['lat'].values
+    else:
+        print('No lat or latitude variable found.')
+
+    if 'longitude' in nc_file.variables:
+        nclon = nc_file['longitude'].values
+    elif 'lon' in nc_file.variables:
+        nclon = nc_file['lon'].values
+    else:
+        print('No lon or longitude variable found.')
+
     
     #Find, slice out only the area we are interested in (to reduce file size and prevent memory overuse/dumps!)
     lat = nclat
@@ -239,7 +252,7 @@ def COMPUTE_CURV_VORT_NON_DIV_UPDATE(data_in, data_out, res, radius, njobs, nond
         #file_list = []
         print('Timestep number: '+str(slc_num))
         out_name = data_dir + 'curv_temp_data_'+str(slc_num)+'.npy'
-        curv_vort_data = curv_vort(u_wnd[slc_num,:,:], v_wnd[slc_num,:,:], dx, dy)
+        curv_vort_data = curv_vort(np.squeeze(u_wnd[slc_num,:,:]), np.squeeze(v_wnd[slc_num,:,:]), dx, dy)
         set_radius = radius
         curv_array = GetBG(LON, LAT, curv_vort_data,res, set_radius)
                 

@@ -8,3 +8,21 @@ joblib (Runs CV code in parallel, can be ignored if only run serially)
 imageio (for making gifs)
 dill
 pickle
+
+
+In alphabetical order
+cartopy
+-datetime
+dill
+*geopy
+imageio
+joblib
+matplotlib
+*metpy
+*netCDF4
+numpy
+*pandas
+-pickle
+*scipy
+windspharm 
+*xarray
